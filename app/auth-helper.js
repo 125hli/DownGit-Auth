@@ -5,7 +5,7 @@ function getGithubAuthUrl(scope) {
   const params = new URLSearchParams()
   const query = {
     client_id: 'b377427312560921a071',
-    redirect_uri: 'https://downgit.evecalm.com/auth.html',
+    redirect_uri: 'https://downgit.mzmoss.cloud/auth.html',
     scope: scope,
     state: getRandomState()
   };
