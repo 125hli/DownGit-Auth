@@ -1,0 +1,80 @@
+﻿<div class="home">
+<div class="text-center">
+
+    <div class="vertical-space"></div>
+    <h1><a href="https://downgit.evecalm.com/">DownGit</a></h1>
+    <div class="center-row"></div>
+    <h4>Create GitHub Resource Download Link</h4>
+    <div class="gh-auth">
+        <span data-tooltip="tooltip" data-toggle="modal" data-target="#auth-modal" data-placement="bottom" title="Auth with github to increase downloading limit">
+            Github Auth <small ng-class="'text-' + authStatus.status">({{authStatus.message}})</small>
+        </span>
+    </div>
+
+    <div class="vertical-space"></div>
+    <div class="col-md-6 center-row">
+        <input name="url" type="url" placeholder="GitHub File or Directory Link" class="form-control" ng-model="url" ng-keypress="catchEnter($event)"></input>
+    </div>
+    <div class="btn-group center-row">
+        <button type="button" class="btn btn-default" ng-click="download()">Download</button>
+        <button type="button" class="btn btn-default" ng-click="createDownLink()">Create Download Link</button>
+    </div>
+    
+    
+    <div ng-show="isProcessing.val">
+        <div class="vertical-space"></div>
+        <img class="processing-img" src="res/images/processing.gif" />
+        <p>Downloaded {{downloadedFiles.val}} of {{totalFiles.val}} files</p>
+    </div>
+    
+    
+    <div class="col-md-6 center-row" ng-show="downUrl">
+        <div class="vertical-space"></div>
+        <textarea class="form-control download-link-box" ng-model="downUrl" ></textarea>
+    </div>
+    
+    <div class="vertical-space"></div>
+    <div class="footer">
+        <a target="_blank" href="https://github.com/MinhasKamal/DownGit">DownGit</a> by <a target="_blank" href="https://github.com/MinhasKamal">Minhas Kamal</a>
+        and enhanced by <a href="https://github.com/oe/DownGit" target="_blank">Saiya</a>
+    </div>
+    <div class="modal fade" id="auth-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Auth with GitHub<br>
+                        <small ng-class="'text-' + authStatus.status">({{authStatus.message}})</small>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div>Auth Type</div>
+                    <div>
+                        <label class="radio-inline">
+                            <input type="radio" checked name="scope" id="inlineRadio1" value=""> public repos only
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="scope" id="inlineRadio2" value="repo"> private and public repos
+                        </label>
+                    </div>
+                    <hr>
+                    <small>
+                        <b>you don't have to auth with github if you download github files successfully</b><br>
+                        with github auth, you can authorize <b>DownGit</b> more github API requests rate<br>
+                        see <a href="https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting">github docs</a> for more details</a><br>
+                        your github access_token store locally encrypted<br>
+                        I don't  have enough money to buy a server to store your token 😂
+
+                    </small>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="startAuth()">Start to auth</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
